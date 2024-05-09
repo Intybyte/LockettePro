@@ -59,14 +59,16 @@ public class Dependency {
     }
         
     public static boolean isPermissionGroupOf(String line, Player player){
-        if (vault != null){
-            try {
-                String[] groups = permission.getPlayerGroups(player);
-                for (String group : groups){
-                    if (line.equals("[" + group + "]")) return true;
-                }
-            } catch (Exception e){}
+        if (vault == null) {
+            return false;
         }
+
+        try {
+            String[] groups = permission.getPlayerGroups(player);
+            for (String group : groups){
+                if (line.equals("[" + group + "]")) return true;
+            }
+        } catch (Exception e){}
         return false;
     }
     
